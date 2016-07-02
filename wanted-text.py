@@ -1,10 +1,14 @@
+# -*- coding: utf-8 -*-
+import re
 def checkio(text):
-
-    #replace this for solution
-    return 'a'
+    p = re.compile('[^a-zA-Z]*')
+    text = p.sub('', text).lower()
+    ac1 = {a: text.count(a) for a in text}
+    ac2 = [a for a in ac1 if ac1[a] == max(ac1.values())]
+    return min(ac2)
 
 if __name__ == '__main__':
-    #These "asserts" using only for self-checking and not necessary for auto-testing
+    # These "asserts" using only for self-checking and not necessary for auto-testing
     assert checkio("Hello World!") == "l", "Hello test"
     assert checkio("How do you do?") == "o", "O is most wanted"
     assert checkio("One") == "e", "All letter only once."
